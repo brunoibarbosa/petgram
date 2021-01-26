@@ -1,0 +1,26 @@
+<header class="header-home">
+    <section>
+        <section class="logo"><a href="/"><img src="./img/petgram-logo.svg" alt="Petgram"></a></section>
+        <nav class="navbar">
+            <section><a class="nav-link" href="/"><i class="<?php echo $this->view->active == 'home' ? 'fi-sr-home' : 'fi-rr-home'; ?>"></i></a></section>
+            <section><a class="nav-link" href="/search"><i class="<?php echo $this->view->active == 'search' ? 'fi-sr-search' : 'fi-rr-search'; ?>"></i></a></section>
+            <section><a class="nav-link" href="/explore"><i class="<?php echo $this->view->active == 'explore' ? 'fi-sr-world' : 'fi-rr-world'; ?>"></i></a></section>
+            <section><a class="nav-link" href="/notifications"><i class="<?php echo $this->view->active == 'notification' ? 'fi-sr-heart' : 'fi-rr-heart'; ?>"></i></a></section>
+            <?php if (isset($_SESSION['user']['id'])) { ?>
+            <section class="profile-picture <?php if ($this->view->active == 'profile') echo 'active' ?>">
+                <section class="profile-img"><img src="<?= $_SESSION['user']['profile_picture'] ?>" alt="Foto de Perfil"></section>
+                <span></span>
+                <section class="sub-menu">
+                    <a href="/profile"><i class="fi-rr-portrait"></i>Perfil</a>
+                    <a href="/profile#saved"><i class="fi-rr-bookmark"></i>Salvos</a>
+                    <a href="/edit"><i class="fi-rr-settings"></i>Configurações</a>
+                    <span></span>
+                    <a href="/logout">Sair</a>
+                </section>
+            </section>
+            <?php } else { ?>
+            <section><a class="nav-link" href="/login"><i class="fas fa-user"></i></a></section>
+            <?php } ?>
+        </nav>
+    </section>
+</header>

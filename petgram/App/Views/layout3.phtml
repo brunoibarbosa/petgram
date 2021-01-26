@@ -1,0 +1,32 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Petgram | <?= $this->view->titlePage ?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="./img/favicon2.ico" type="image/x-icon">
+
+		<!-- Estilo próprio -->
+		<link rel="stylesheet" href="./css/main.css">
+		<link rel="stylesheet" href="./css/add-picture.css">
+		<link rel="stylesheet" href="./css/<?= $this->view->style ?>.css">
+
+		<!-- UIcons -->
+		<link rel="stylesheet" href="./css/uicons-regular-rounded.css">
+		<link rel="stylesheet" href="./css/uicons-solid-rounded.css">
+	</head>
+
+	<body>
+		<?php require_once 'components/nav.phtml' ?>
+		<?php require_once 'components/picture-button.phtml' ?>
+
+		<?= $this->content() ?>
+		<footer class="createdBy">criado por <br><a target="_blank" href="https://github.com/brunoibarbosa/">BRUNO INACIO</a></footer>
+
+		<?php require_once 'components/modal.phtml' ?>
+		<script src="./js/main.js"></script>
+	</body>
+</html>
+<?php
+	if (isset($_SESSION['errors'])) unset($_SESSION['errors']);
+?>

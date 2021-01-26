@@ -1,0 +1,144 @@
+/* SEARCH */
+main#search {
+    background: var(--lighten-color);
+}
+
+.searchGroup {
+    margin: 20px;
+}
+
+.searchInput {
+    margin-bottom: 15px;
+}
+
+.searchGroup .searchInput label {
+	display: flex;
+	position: relative;
+	cursor: text;
+}
+
+.searchGroup .searchInput input {
+	background: var(--lighten-color-2);
+    border: 1px solid var(--gray-3);
+    border-right: none;
+	flex-grow: 1;
+	border-radius: 3px;
+	color: var(--darken-color);
+	font-size: 0.75rem;
+    padding: 14px 8px 6px 8px;
+    height: 40px;
+}
+
+.searchInput input:focus,
+.searchInput input:invalid:focus {
+	border: 1px solid var(--gray-2);
+	color: var(--darken-color);
+}
+
+.searchGroup .searchInput span {
+	position: absolute;
+	color: var(--gray-2);
+	top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+	transition: all ease-out .1s;
+}
+
+.searchInput input:focus + span,
+.searchInput input:valid + span {
+	font-size: 0.6rem;
+    left: 9px;
+    top: 10px;
+}
+
+.searchGroup .btnSearch {
+    background: var(--primary-color);
+    height: 40px;
+    width: 40px;
+    color: var(--lighten-color);
+    border: 1px solid var(--primary-color);
+	border-left: none;
+	border-radius: 0 3px 3px 0;
+}
+
+.searchGroup .btnSearch i {
+	pointer-events: none;
+}
+
+.searchResult {
+    border-top: 1px solid var(--gray-3);
+}
+
+.search-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.search-card .info {
+    display: flex;
+    align-items: center;
+}
+
+.search-card .info .picture {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--gray-3);
+    margin: 4px;
+    margin-right: 13px;
+}
+
+.search-card .info .picture img {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-card .info .user {
+    font-size: 0.875rem;
+}
+
+.search-card .info .user a {
+    color: var(--darken-color);
+    font-weight: 600;
+}
+
+.search-card .info .user span {
+    color: var(--gray-2);
+    display: block;
+}
+
+.search-card .action button,
+.search-card .action a {
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.87rem;
+    width: fit-content;
+    height: 30px;
+    text-align: center;
+}
+
+.search-card .action .follow-btn {
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);;
+    color: var(--lighten-color);
+    padding: 5px 9px;
+}
+
+.search-card .action .unfollow-btn {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 9px;
+}
+
+.empty {
+    display: block;
+    margin-top: 15px;
+    color: var(--gray-2);
+}

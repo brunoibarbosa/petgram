@@ -1,0 +1,386 @@
+:root {
+	--primary-color: #f39c12;
+	--primary-lighten-color: #eeb75e;
+    --darken-color: #262626;
+    --lighten-color: #fff;
+    --lighten-color-2: #fbfbfb;
+	--gray-1: #585858;
+	--gray-2: #8e8e8e;
+    --gray-3: #dbdbdb;
+    --red: #ed4956;
+    --blue: #3498db;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+	min-height: 100vh;
+}
+
+body {
+	background: var(--lighten-color);
+	font-size: 0.75rem;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+    background: var(--lighten-color-2);
+    padding-bottom: 40px;
+    margin-top: 61px;
+    flex-grow: 1;
+}
+
+input, button {
+	border: none;
+	background: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: var(--darken-color);
+}
+
+ul {
+	list-style: none;
+}
+
+.errors-form {
+	text-align: center;
+	color: var(--red);
+	font-size: 0.87rem;
+	margin: 20px 0 30px;
+}
+
+.createdBy {
+	background: var(--lighten-color-2);
+	color:  var(--gray-2);
+	text-align: center;
+	margin-top: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.createdBy.auth {
+	background: var(--lighten-color);
+}
+
+.createdBy a {
+	color: var(--gray-1);
+	font-weight: 800;
+}
+
+#error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+#error .info {
+	padding: 40px;
+	text-align: center;
+	max-width: 350px;
+	color: var(--darken-color);
+	font-size: .9rem;
+}
+
+#error .info h1 {
+	margin-bottom: 5px;
+	font-size: 1.5rem;
+}
+
+#error .info a {
+	font-size: .85rem;
+	display: block;
+	margin-top: 20px;
+	background: var(--primary-color);
+	font-weight: 600;
+	padding: 7px;
+	color: var(--lighten-color);
+	border-radius: 3px;
+}
+
+.header-home {
+    border-bottom: 1px solid var(--gray-3);
+    background: var(--lighten-color);
+    position: fixed;
+    width: 100%;
+    background: var(--lighten-color);
+    z-index: 10000;
+}
+
+.header-home > section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+}
+
+.logo img {
+    width: 90px;
+}
+
+.navbar {
+    flex: 0 1 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav-link {
+    font-size: 1.45rem;
+    max-width: 27px;
+    color: var(--darken-color);
+    cursor: pointer;
+}
+
+.navbar .profile-picture {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 4;
+}
+
+.navbar .profile-picture.active::after,
+.navbar .profile-picture.sub-menu-active::after {
+    content: '';
+    width: 25px;
+    height: 25px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid var(--darken-color);
+}
+
+.navbar .profile-picture .profile-img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    box-shadow: 0 0 0 1px var(--gray-3);
+    background: var(--lighten-color);
+}
+
+.navbar .profile-picture .profile-img > img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+}
+
+.navbar .profile-picture.sub-menu-active > span {
+    position: absolute;
+    display: block;
+    background: var(--lighten-color);
+    width: 14px;
+    height: 14px;
+    left: calc(50% + 3px);
+    top: calc(100% + 20px);
+    transform: rotate(45deg) translateX(-100%);
+    z-index: 2;
+    box-shadow: -1px -1px 2px 0px var(--gray-3);
+}
+
+.navbar .profile-picture.sub-menu-active::before {
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    top: -24px;
+    right: calc(100% - 42px);
+    position: absolute;
+    cursor: initial;
+}
+
+.navbar .profile-picture.sub-menu-active .sub-menu {
+    display: flex;
+}
+
+.navbar .sub-menu {
+    position: absolute;
+    right: -20px;
+    top: calc(100% + 17px);
+    display: none;
+    flex-direction: column;
+    background: var(--lighten-color);
+    border-radius: 6px;
+    min-width: 230px;
+    box-shadow: 0 1px 3px 1px var(--gray-3);
+}
+
+.navbar .sub-menu i {
+    margin-right: 12px;
+    width: 22px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--darken-color);
+}
+
+.navbar .sub-menu a {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .sub-menu a:last-child {
+    border-top: 1px solid var(--gray-3);
+}
+
+.navbar .sub-menu a:hover {
+    background: var(--lighten-color-2);
+}
+
+.navbar .sub-menu a:last-child {
+    padding-bottom: 12px;
+}
+
+.navbar .sub-menu span {
+    background: var(--gray-3);
+    width: 100%;
+    height: 1px;
+}
+
+/* MODAL */
+.modal-container {
+    background: #000000a6;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.show {
+    display: flex;
+    animation: showOption .1s ease-out;
+}
+
+@keyframes showOption {
+    0% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.modal-petgram {
+    margin: 20px;
+    border-radius: 12px;
+    width: 260px;
+    background: var(--lighten-color);
+    text-align: center;
+}
+
+.modal-petgram > h3 {
+    margin: 32px;
+    font-weight: 600;
+    font-size: 1.13rem;
+    color: var(--darken-color);
+}
+
+.modal-petgram .options {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-petgram .options > *,
+.modal-petgram .cancelBtn {
+    color: var(--red);
+    font-weight: 700;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--gray-3);
+    font-size: 0.87rem;
+    cursor: pointer;
+}
+
+.modal-petgram .options > :active,
+.modal-petgram .options > label:active,
+.modal-petgram .cancelBtn:active {
+    background: rgba(0, 0, 0, .1);
+}
+
+.modal-petgram .cancelBtn {
+    font-weight: 400;
+    color: var(--darken-color);
+    width: 100%;
+}
+
+.buttons-pages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.buttons-pages span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.buttons-pages a {
+    color: var(--darken-color);
+    margin: 2px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--primary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-pages a.active,
+.buttons-pages a:hover {
+    color: var(--lighten-color);
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.buttons-pages .btnPrevious {
+    margin-right: 5px;
+}
+
+.buttons-pages .btnNext {
+    margin-left: 5px;
+}
+
+.buttons-pages .btnPrevious,
+.buttons-pages .btnNext {
+    background: var(--primary-lighten-color);
+    border: 1px solid var(--primary-lighten-color);
+    color: var(--lighten-color);
+}

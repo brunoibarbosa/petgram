@@ -1,0 +1,76 @@
+<main id="photo">
+    <section class="photo-show">
+        <section class="user">
+            <section class="user-image">
+                <a href="/profile?user=<?= $this->view->user->username ?>"><img src="<?= $this->view->user->picture ?>" alt=""></a>
+            </section>
+            <section class="user-info">
+                <a href="/profile?user=<?= $this->view->user->username ?>"><?= $this->view->user->username ?></a>
+                <span><?= $this->view->user->petname ?></span>
+            </section>
+            <?php if (isset($_SESSION['user']['id']) && $_SESSION['user']['id'] == $this->view->photo->id_petuser) { ?>
+                <button class="deletePhoto"><i class="fi-rr-trash"></i></button>
+            <?php } ?>
+        </section>
+        <section class="photo">
+            <section class="photo-image">
+                <img src="<?= $this->view->photo->filepath ?>" alt="Foto de <?= $this->view->user->username ?>">
+            </section>
+            <section class="actions">
+                <section class="buttons">
+                    <?php if ($this->view->photo->liked_by_user) { ?>
+                        <a class="liked" href="/unlike-photo?p=<?= $_GET['p'] ?>"><i class="fi-sr-heart"></i></a>
+                    <?php } else { ?>
+                        <a href="/like-photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-heart"></i></a>
+                    <?php } ?>
+                    <label for="commentInput"><i class="fi-rr-comment"></i></label>
+                    <?php if ($this->view->photo->saved_by_user) { ?>
+                        <a class="saved" href="/unsave-photo?p=<?= $_GET['p'] ?>"><i class="fi-sr-bookmark"></i></a>
+                    <?php } else { ?>
+                        <a href="/save-photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-bookmark"></i></a>
+                    <?php } ?>
+                    <span class="date-post"><?= $this->view->photo->register_date ?></span>
+                </section>
+                <section class="liked-by">
+                    <?php if ($this->view->photo->last_like) { ?>
+                        <span>Curtido por <a href="/profile?user=<?= $this->view->photo->last_like->username ?>"><?= $this->view->photo->last_like->username ?></a><?php if (count($this->view->photo->likes) > 1) { ?> e <a href="/likes?p=<?= $this->view->photo->photoname ?>">outras <?php echo count($this->view->photo->likes) - 1 ?> pessoas</a><?php } ?></span>
+                    <?php } ?>
+                </section>
+                <form class="add-comment" action="comment-photo" method="post">
+                    <input type="text" hidden value="<?= $_GET['p'] ?>" name="photoname" required>
+                    <input type="text" name="comment" id="commentInput" required>
+                    <button type="submit">Publicar</button>
+                </form>
+                <?php if(isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) { ?>
+                    <section class="errors-form">
+                    <?php foreach ($_SESSION['errors'] as $key => $error) { ?>
+                        <p><?= $error ?></p>
+                    <?php }?>
+                    </section>
+                <?php } ?>
+                <?php if($this->view->photo->comments) { ?>
+                <section class="comments">
+                <a class="seeComments" href="/comments?p=<?= $this->view->photo->photoname ?>">Ver todos os <?= $this->view->photo->total_comments ?> comentários</a>
+                    <?php foreach ($this->view->photo->comments as $key => $comment) { ?>
+                        <section class="comment">
+                            <section class="user-picture">
+                                <img src="<?= $comment->user->picture ?>" alt="Foto de Perfil">
+                            </section>
+                            <section class="content">
+                                <section>
+                                    <a href="/profile?user=<?= $comment->user->username ?>"><?= $comment->user->username ?></a>
+                                    <span>• <?= $comment->register_date ?></span>
+                                </section>
+                                <p><?= $comment->comment ?></p>
+                            </section>
+                            <?php if ($_SESSION['user']['id'] == $comment->user->id_petuser) { ?>
+                                <a class="btnDeleteComment" href="/delete-comment?comment=<?= $comment->id_comment ?>"><i class="fi-rr-trash"></i></a>
+                            <?php } ?>
+                        </section>
+                    <?php }?>
+                </section>
+                <?php } ?>
+            </section>
+        </section>
+    </section>
+</main>

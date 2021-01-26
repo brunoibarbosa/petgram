@@ -1,0 +1,90 @@
+<main id="search">
+    <section class="searchGroup">
+        <form class="searchInput" action="/search" method="get">
+            <label>
+				<input type="text" value="<?= $this->view->searchParams ?>" required name="user">
+                <span>Nome do pet ou usuário</span>
+                <button class="btnSearch" type="submit"><i class="fi-rr-search"></i></button>
+			</label>
+        </form>
+        <section class="searchResult">
+            <?php if (!$this->view->searchResult) { ?>
+                <span class="empty">Nenhum perfil encontrado...</span>
+            <?php } ?>
+            <ul>
+                <?php foreach ($this->view->searchResult as $key => $user) { 
+                if (isset($_SESSION['user']['username']) && $user->username != $_SESSION['user']['username']) { ?>
+                <li class="search-card">
+                    <section class="info">
+                        <section class="picture">
+                            <img src="<?= $user->picture ?>" alt="Foto de perfil">
+                        </section>
+                        <section class="user">
+                            <a href="/profile?user=<?= $user->username ?>"><?= $user->username ?></a>
+                            <span><?= $user->petname ?></span>
+                        </section>
+                    </section>
+                    <section class="action">
+                    <?php if (isset($_SESSION['user']['username']) && $user->username != $_SESSION['user']['username']) { if (!$user->followed_by_user) { ?>
+                        <a href="/follow?user=<?= $user->username ?>" class="follow-btn">Seguir</a>
+                    <?php } else { ?>
+                        <button type="button" class="unfollow-btn" data-user="<?= $user->username ?>">Deixar de seguir</button>
+                        <?php }} ?>
+                    </section>
+                </li>
+                <?php }} ?>
+            </ul>
+            <?php if ($this->view->totalPages > 1) { ?>
+            <section class="buttons-pages">
+                <!-- Botão voltar uma página -->
+                <?php if ($this->view->currentPage - 1 > 0) { ?>
+                    <a class="btnPrevious" href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->currentPage - 1 ?>"><i class="fi-rr-arrow-left"></i></a>
+                <?php } ?>
+
+                <!-- Botão primeira página -->
+                <a class="<?php if ($this->view->currentPage == 1) echo 'active' ?>" href="/search?user=<?= $this->view->searchParams ?>">1</a>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 2 > 1) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Página anterior a ativa -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 1 > 1) { ?>
+                    <a href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->currentPage - 1 ?>"><?= $this->view->currentPage - 1 ?></a>
+                <?php } ?>
+                
+                <!-- Página atual != da primeira e última página -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage < $this->view->totalPages) { ?>
+                    <a class="active" href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->currentPage ?>"><?= $this->view->currentPage ?></a>
+                <?php } ?>
+
+                <!-- Página próxima a ativa -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 1 < $this->view->totalPages) { ?>
+                    <a href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->currentPage + 1 ?>"><?= $this->view->currentPage + 1 ?></a>
+                <?php } ?>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 2 < $this->view->totalPages) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Botão última página -->
+                <?php if ($this->view->totalPages >= 3) { ?>
+                    <a class="<?php if ($this->view->currentPage == $this->view->totalPages) echo 'active' ?>" href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->totalPages ?>"><?= $this->view->totalPages ?></a>
+                <?php } ?>
+
+                <!-- Botão caso só tenha 2 páginas -->
+                <?php if ($this->view->totalPages == 2) { ?>
+                    <a class="<?php if ($this->view->currentPage == 2) echo 'active' ?>" href="/search?user=<?= $this->view->searchParams ?>&page=2">2</a>
+                <?php } ?>
+
+                <!-- Botão avançar uma página -->
+                <?php if ($this->view->currentPage + 1 <= $this->view->totalPages) { ?>
+                    <a class="btnNext" href="/search?user=<?= $this->view->searchParams ?>&page=<?= $this->view->currentPage + 1 ?>"><i class="fi-rr-arrow-right"></i></a>
+                <?php } ?>
+            </section>
+            <?php } ?>
+        </section>
+    </section>
+</main>

@@ -1,0 +1,15 @@
+<main id="account-status">
+    <section class="info">
+        <section class="profile-picture">
+            <img src="<?= $_SESSION['user']['profile_picture'] ?>" alt="Foto de perfil">
+        </section>
+        <p>Olá,<br><span class="username"><?= $_SESSION['user']['username'] ?></span></p>
+    </section>
+    <section class="notice">
+        <span>Sua conta está desativada. Deseja reativá-la?</span>
+        <section class="options">
+            <a href="/reactivate-account" class="btnConfirm">Confirmar</a>
+            <a href="/login" class="btnBack">Voltar</a>
+        </section>
+    </section>
+</main>

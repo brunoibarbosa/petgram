@@ -1,0 +1,10 @@
+<main id="explore">
+    <section class="photos">
+        <?php foreach ($this->view->randomPhotos as $key => $photo) {?>
+            <a class="card-photo" href="/photo?p=<?= $photo->photoname ?>"><img src="<?= $photo->filepath ?>" alt="Fotografia"></a>
+        <?php } ?>
+    </section>
+    <section class="seeMore">
+        <a class="btnSeeMore" href="/explore">Ver mais fotos</a>
+    </section>
+</main>

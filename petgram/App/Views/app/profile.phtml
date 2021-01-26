@@ -1,0 +1,47 @@
+<main id="profile">
+    <header class="header-profile">
+        <section class="profile-picture"><img src="<?= $this->view->user->picture ?>" alt="Foto de Perfil"></section>
+        <section class="profile-info-1">
+            <span class="username"><?= $this->view->user->username ?></span>
+            <?php if (isset($_SESSION['user']['id']) && $_SESSION['user']['id'] == $this->view->user->id_petuser) { ?>
+                <a class="edit-btn" href="/edit">Editar perfil</a>
+            <?php } else {
+                if (!$this->view->user->followed_by_user) { ?>
+                <a class="follow-btn" href="/follow?user=<?= $this->view->user->username ?>">Seguir</a>
+            <?php } else { ?>
+                <a class="unfollow-btn" href="/unfollow?user=<?= $this->view->user->username ?>">Deixar de seguir</a>
+            <?php }} ?>
+        </section>
+        <section class="profile-info-2">
+            <ul class="name-bio">
+                <span class="petname"><?= $this->view->user->petname ?></span>
+                <span class="bio"><?= $this->view->user->bio ?></span>
+            </ul>
+            <ul class="profile-numbers">
+                <li><a><span class="number"><?= $this->view->user->total_post ?></span> publicação</a></li>
+                <li><a href="/followers?user=<?= $this->view->user->username ?>"><span class="number"><?= $this->view->user->follower ?></span> seguidores</a></li>
+                <li><a href="/following?user=<?= $this->view->user->username ?>"><span class="number"><?= $this->view->user->following ?></span> seguindo</a></li>
+            </ul>
+        </section>
+    </header>
+    <section class="user-photos">
+        <section class="options">
+            <a href="#photos" class="btnMyPhotos"><i class="fi-rr-grid"></i></a>
+            <?php if ($this->view->user->username == $_SESSION['user']['username']) { ?>
+            <a href="#saved" class="btnSaved"><i class="fi-rr-bookmark"></i></a>
+            <?php } ?>
+        </section>
+        <section class="photos">
+            <?php foreach ($this->view->user->photos as $key => $photo) {?>
+            <a class="card-photo" href="/photo?p=<?= $photo->photoname ?>"><img src="<?= $photo->filepath ?>" alt="Fotografia de <?= $this->view->user->username ?>"></a>
+            <?php } ?>
+        </section>
+        <?php if ($this->view->user->username == $_SESSION['user']['username']) { ?>
+        <section class="saved hidden">
+            <?php foreach ($this->view->user->photosSaved as $key => $photo) { ?>
+            <a class="card-photo" href="/photo?p=<?= $photo->photoname ?>"><img src="<?= $photo->filepath ?>" alt="Fotografia de <?= $this->view->user->username ?>"></a>
+            <?php } ?>
+        </section>
+        <?php } ?>
+    </section>
+</main>

@@ -1,0 +1,49 @@
+<section class="form-home">
+	<img src="./img/petgram-logo.svg" alt="Petgram" width="175">
+	<form action="/account-register" id="form-register" method="post">
+		<section>
+			<label>
+				<input type="text" value="<?= $this->view->userForm['username'] ?>" name="username" required>
+				<span>Nome de usuário</span>
+			</label>
+		</section>
+		<section>
+			<label>
+				<input type="text" value="<?= $this->view->userForm['email'] ?>" name="email" required>
+				<span>Email</span>
+			</label>
+		</section>
+		<section>
+			<label>
+				<input type="password" value="" name="password" required id="passwordInput">
+				<span>Senha</span>
+				<button class="showPass" type="button"><i class="fi-rr-eye-crossed"></i></button>
+			</label>
+		</section>
+		<section>
+			<label>
+				<input type="text" value="<?= $this->view->userForm['petname'] ?>" name="petname" required>
+				<span>Nome do Pet</span>
+			</label>
+		</section>
+		<section>
+			<label>
+				<select name="animal" required>
+					<option value="" disabled selected>Escolha a espécie</option>
+					<?php foreach ($this->view->animals as $key => $animal) { ?>
+						<option value="<?= $animal->id_animal ?>" <?php if($this->view->userForm['animal'] == $animal->id_animal) echo 'selected' ?>><?= $animal->species ?></option>
+					<?php } ?>
+				</select>
+			</label>
+		</section>
+		<section><button type="submit" disabled>Cadastrar</button></section>
+	</form>
+	<?php if(isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) { ?>
+		<section class="errors-form">
+		<?php foreach ($_SESSION['errors'] as $key => $error) { ?>
+			<p><?= $error ?></p>
+		<?php }?>
+		</section>
+	<?php } ?>
+	<section><span class="span-register">Já tem uma conta? <a href="/login">Fazer login</a></span></section>
+</section>

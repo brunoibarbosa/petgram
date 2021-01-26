@@ -1,0 +1,76 @@
+<main id="edit">
+    <section class="edit-picture">
+        <section class="profile-picture">
+            <img src="<?= $_SESSION['user']['profile_picture'] ?>" alt="">
+        </section>
+        <section class="info-picture">
+            <label>
+                <span><?= $this->view->user->username ?></span>
+                Alterar foto do perfil
+            </label>
+            <section>
+                <form action="/change-profile-picture" enctype="multipart/form-data" method="post" id="formChangePicture">
+                    <input accept="image/jpeg, image/png" type="file" id="change-picture" hidden name="file">
+                </form>
+            </section>
+        </section>
+    </section>
+    <form class="edit-info" method="post" action="/update-user">
+        <section class="petname-info">
+            <label>
+                Nome<br>
+                <input type="text" value="<?= $this->view->user->petname ?>" name="petname">
+            </label>
+            <span>Ajude outros usuário a descobrir sua conta usando o nome pelo qual você é conhecido: seu nome completo ou apelido.</span>
+        </section>
+        <section class="username-info">
+            <label>
+                Nome de usuário<br>
+                <input type="text" value="<?= $this->view->user->username ?>" name="username">
+            </label>
+        </section>
+        <section class="bio-info">
+            <label>
+                Biografia<br>
+                <input type="text" value="<?= $this->view->user->bio ?>" name="bio">
+            </label>
+        </section>
+        <section class="email-info">
+            <label>
+                Email<br>
+                <input type="text" value="<?= $this->view->user->email ?>" name="email">
+            </label>
+        </section>
+        <section class="email-info">
+            <label>
+                Espécie<br>
+                <select name="animal" required>
+                    <?php foreach ($this->view->animals as $key => $animal) { ?>
+                        <option value="<?= $animal->id_animal ?>" <?php if($this->view->user->id_animal == $animal->id_animal) echo 'selected' ?>><?= $animal->species ?></option>
+                        <?php } ?>
+                    </select>
+                </label>
+        </section>
+        <section class="password-confirm">
+            <label class="password">
+                Confirme sua senha<br>
+                <section class="password-group">
+                    <input type="password" name="password" required id="passwordInput">
+                    <button class="showPass" type="button"><i class="fi-rr-eye-crossed"></i></button>
+                </section>
+			</label>
+        </section>
+        <input type="hidden" value="1" name="active">
+        <?php if(isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) { ?>
+		<section class="errors-form">
+		<?php foreach ($_SESSION['errors'] as $key => $error) { ?>
+			<p><?= $error ?></p>
+            <?php }?>
+            </section>
+        <?php } ?>
+        <section class="buttons">
+            <button class="btnSubmit" type="submit">Enviar</button>
+            <button class="btnDisable" type="button">Desativar minha conta temporariamente</button>
+        </section>
+    </form>
+</main>

@@ -1,0 +1,78 @@
+<main id="followers">
+    <section class="followers">
+        <ul>
+            <a class="backToPhoto" href="/profile?user=<?= $this->view->username ?>"><i class="fi-rr-arrow-left"></i> Voltar para o perfil</a>
+            <?php if($this->view->followers) { foreach ($this->view->followers as $follower => $value) { ?>
+            <li class="card">
+                <section class="info">
+                    <section class="picture">
+                        <a href="/profile?user=<?= $value->username ?>"><img src="<?= $value->picture ?>" alt="Foto de perfil"></a>
+                    </section>
+                    <section class="user">
+                        <a href="/profile?user=<?= $value->username ?>"><?= $value->username ?></a>
+                        <span><?= $value->petname ?></span>
+                    </section>
+                </section>
+                <section class="action">
+                    <?php if (isset($_SESSION['user']['username']) && $value->username != $_SESSION['user']['username']) { if (!$value->followed_by_user) { ?>
+                        <a href="/follow?user=<?= $value->username ?>" class="follow-btn">Seguir</a>
+                    <?php } else { ?>
+                        <button type="button" class="unfollow-btn" data-user="<?= $value->username ?>">Deixar de seguir</button>
+                        <?php }} ?>
+                </section>
+            </li>
+            <?php }} ?>
+        </ul>
+        <?php if ($this->view->totalPages > 1) { ?>
+            <section class="buttons-pages">
+                <!-- Botão voltar uma página -->
+                <?php if ($this->view->currentPage - 1 > 0) { ?>
+                    <a class="btnPrevious" href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->currentPage - 1 ?>"><i class="fi-rr-arrow-left"></i></a>
+                <?php } ?>
+
+                <!-- Botão primeira página -->
+                <a class="<?php if ($this->view->currentPage == 1) echo 'active' ?>" href="/followers?user=<?= $_GET['user'] ?>">1</a>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 2 > 1) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Página anterior a ativa -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 1 > 1) { ?>
+                    <a href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->currentPage - 1 ?>"><?= $this->view->currentPage - 1 ?></a>
+                <?php } ?>
+                
+                <!-- Página atual != da primeira e última página -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage < $this->view->totalPages) { ?>
+                    <a class="active" href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->currentPage ?>"><?= $this->view->currentPage ?></a>
+                <?php } ?>
+
+                <!-- Página próxima a ativa -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 1 < $this->view->totalPages) { ?>
+                    <a href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->currentPage + 1 ?>"><?= $this->view->currentPage + 1 ?></a>
+                <?php } ?>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 2 < $this->view->totalPages) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Botão última página -->
+                <?php if ($this->view->totalPages >= 3) { ?>
+                    <a class="<?php if ($this->view->currentPage == $this->view->totalPages) echo 'active' ?>" href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->totalPages ?>"><?= $this->view->totalPages ?></a>
+                <?php } ?>
+
+                <!-- Botão caso só tenha 2 páginas -->
+                <?php if ($this->view->totalPages == 2) { ?>
+                    <a class="<?php if ($this->view->currentPage == 2) echo 'active' ?>" href="/followers?user=<?= $_GET['user'] ?>&page=2">2</a>
+                <?php } ?>
+
+                <!-- Botão avançar uma página -->
+                <?php if ($this->view->currentPage + 1 <= $this->view->totalPages) { ?>
+                    <a class="btnNext" href="/followers?user=<?= $_GET['user'] ?>&page=<?= $this->view->currentPage + 1 ?>"><i class="fi-rr-arrow-right"></i></a>
+                <?php } ?>
+            </section>
+        <?php } ?>
+    </section>
+</main>

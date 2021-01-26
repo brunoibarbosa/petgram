@@ -1,0 +1,198 @@
+/* PHOTO */
+.user {
+    height: 80px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.user .deletePhoto {
+    margin-left: auto;
+    color: var(--red);
+    font-size: 1rem;
+}
+
+.user .user-image a {
+    display: block;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    background: var(--lighten-color);
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--gray-3);
+}
+
+.user .user-image img {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.user .user-info {
+    font-size: 0.875rem;
+    margin-left: 12px;
+    color: var(--darken-color);
+}
+
+.user .user-info a {
+    font-weight: 600;
+}
+
+.user .user-info span {
+    display: block;
+}
+
+.photo .photo-image {
+    width: 100%;
+}
+
+.photo .photo-image img {
+    width: 100%;
+}
+
+.photo .actions {
+    padding: 0 16px;
+}
+
+.photo .actions .buttons {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.photo .actions .buttons .liked i {
+    color: var(--red);
+}
+
+.photo .actions .buttons .saved i {
+    color:var(--blue);
+}
+
+.photo .actions .buttons a,
+.photo .actions .buttons label {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo .actions .buttons label i,
+.photo .actions .buttons a i {
+    font-size: 1.5rem;
+    color: var(--darken-color);
+}
+
+.date-post {
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--darken-color);
+}
+
+.photo .liked-by {
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+    color: var(--darken-color);
+}
+
+.photo .liked-by a {
+    font-weight: 600;
+}
+
+.photo .add-comment {
+    display: flex;
+    padding-top: 15px;
+    border-top: 1px solid var(--gray-3);
+}
+
+.photo .add-comment input {
+    flex-grow: 1;
+    border: 1px solid var(--gray-3);
+    padding: 0 10px;
+}
+
+.photo .add-comment button {
+    height: 40px;
+    flex-basis: 50px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+
+.seeComments {
+    font-size: 0.875rem;
+    color: var(--gray-2);
+    margin-bottom: 10px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.comments {
+    margin-top: 15px;
+}
+
+.comment {
+    display: flex;
+    color: var(--darken-color);
+    margin-bottom: 20px;
+}
+
+.comment .user-picture {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px var(--gray-3);
+    margin-right: 15px;
+}
+
+.comment .user-picture img {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.comment .content {
+    width: calc(100% - 65px);
+    padding-right: 15px;
+}
+
+.comment .content > section {
+    display: flex;
+    align-items: center;
+}
+
+.comment .content a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+    max-width: 120px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.comment .content span {
+    color: var(--gray-2);
+    font-size: 0.7rem;
+}
+
+.comment .content p {
+    margin-top: 4px;
+    overflow-wrap: break-word;
+}
+
+.btnDeleteComment {
+    color: var(--red);
+    height: 12px;
+    align-self: center;
+    font-size: 0.9rem;
+}

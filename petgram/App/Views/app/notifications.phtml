@@ -1,0 +1,78 @@
+<main id="notifications">
+    <section class="notification">
+        <ul>
+            <?php if(!count($this->view->notifications) > 0) { ?>
+                <span class="empty">Tudo calmo por aqui...</span>
+            <?php } ?>
+            <?php if($this->view->notifications) { foreach ($this->view->notifications as $key => $value) { ?>
+            <li class="card">
+                <section class="info">
+                    <section class="picture">
+                        <a href="/profile?user=<?= $value->user->username ?>"><img src="<?= $value->user->picture ?>" alt="Foto de perfil"></a>
+                    </section>
+                    <section class="user">
+                        <a href="/profile?user=<?= $value->user->username ?>"><?= $value->user->username ?></a>
+                    </section>
+                    <section class="content">
+                        <span><?= $value->content ?></span>
+                    </section>
+                </section>
+                <section class="action">
+                    <a class="buttonReference" href="<?= $value->hrefButton ?>"><i class="fi-rr-arrow-right"></i></a>
+                </section>
+            </li>
+            <?php }} ?>
+        </ul>
+        <?php if ($this->view->totalPages > 1) { ?>
+            <section class="buttons-pages">
+                <!-- Botão voltar uma página -->
+                <?php if ($this->view->currentPage - 1 > 0) { ?>
+                    <a class="btnPrevious" href="/notifications?page=<?= $this->view->currentPage - 1 ?>"><i class="fi-rr-arrow-left"></i></a>
+                <?php } ?>
+
+                <!-- Botão primeira página -->
+                <a class="<?php if ($this->view->currentPage == 1) echo 'active' ?>" href="/notifications">1</a>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 2 > 1) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Página anterior a ativa -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 1 > 1) { ?>
+                    <a href="/notifications?page=<?= $this->view->currentPage - 1 ?>"><?= $this->view->currentPage - 1 ?></a>
+                <?php } ?>
+                
+                <!-- Página atual != da primeira e última página -->
+                <?php if ($this->view->currentPage > 1 && $this->view->currentPage < $this->view->totalPages) { ?>
+                    <a class="active" href="/notifications?page=<?= $this->view->currentPage ?>"><?= $this->view->currentPage ?></a>
+                <?php } ?>
+
+                <!-- Página próxima a ativa -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 1 < $this->view->totalPages) { ?>
+                    <a href="/notifications?page=<?= $this->view->currentPage + 1 ?>"><?= $this->view->currentPage + 1 ?></a>
+                <?php } ?>
+
+                <!-- ... -->
+                <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 2 < $this->view->totalPages) { ?>
+                    <span>...</span>
+                <?php } ?>
+
+                <!-- Botão última página -->
+                <?php if ($this->view->totalPages >= 3) { ?>
+                    <a class="<?php if ($this->view->currentPage == $this->view->totalPages) echo 'active' ?>" href="notifications?page=<?= $this->view->totalPages ?>"><?= $this->view->totalPages ?></a>
+                <?php } ?>
+
+                <!-- Botão caso só tenha 2 páginas -->
+                <?php if ($this->view->totalPages == 2) { ?>
+                    <a class="<?php if ($this->view->currentPage == 2) echo 'active' ?>" href="/notifications?page=2">2</a>
+                <?php } ?>
+
+                <!-- Botão avançar uma página -->
+                <?php if ($this->view->currentPage + 1 <= $this->view->totalPages) { ?>
+                    <a class="btnNext" href="/notifications?page=<?= $this->view->currentPage + 1 ?>"><i class="fi-rr-arrow-right"></i></a>
+                <?php } ?>
+            </section>
+        <?php } ?>
+    </section>
+</main>

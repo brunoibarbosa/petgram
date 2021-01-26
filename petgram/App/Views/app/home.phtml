@@ -1,0 +1,120 @@
+<main id="home">
+    <section class="feed">
+        <?php if (!count($this->view->feed) > 0) { ?>
+            <span class="empty">Comece a seguir alguém!</span>
+        <?php } ?>
+        <?php foreach ($this->view->feed as $key => $photo) { ?>
+        <section class="photo-show">
+            <section class="user">
+                <section class="user-image">
+                    <a href="/profile?user=<?= $photo->username ?>"><img src="<?= $photo->picture ?>" alt=""></a>
+                </section>
+                <section class="user-info">
+                    <a href="/profile?user=<?= $photo->username ?>"><?= $photo->username ?></a>
+                    <span><?= $photo->petname ?></span>
+                </section>
+            </section>
+            <section class="photo">
+                <section class="photo-image">
+                    <a href="/photo?p=<?= $photo->photoname ?>"><img src="<?= $photo->filepath ?>" alt="Foto de <?= $photo->username ?>"></a>
+                </section>
+                <section class="actions">
+                    <section class="buttons">
+                        <?php if ($photo->liked_by_user) { ?>
+                            <a class="liked" href="/unlike-photo?p=<?= $photo->photoname ?>"><i class="fi-sr-heart"></i></a>
+                        <?php } else { ?>
+                            <a href="/like-photo?p=<?= $photo->photoname ?>"><i class="fi-rr-heart"></i></a>
+                        <?php } ?>
+                        <a href="/photo?p=<?= $photo->photoname ?>#commentInput"><i class="fi-rr-comment"></i></a>
+                        <?php if ($photo->saved_by_user) { ?>
+                            <a class="saved" href="/unsave-photo?p=<?= $photo->photoname ?>"><i class="fi-sr-bookmark"></i></a>
+                        <?php } else { ?>
+                            <a href="/save-photo?p=<?= $photo->photoname ?>"><i class="fi-rr-bookmark"></i></a>
+                        <?php } ?>
+                        <span class="date-post"><?= $photo->register_date ?></span>
+                    </section>
+                    <section class="liked-by">
+                        <?php if ($photo->last_like) { ?>
+                            <span>Curtido por <a class="lastLike" href="/profile?user=<?= $photo->last_like->username ?>"><?= $photo->last_like->username ?></a><?php if (count($photo->likes) > 1) { ?> e <a href="/likes?p=<?= $photo->photoname ?>">outras <?php echo count($photo->likes) - 1 ?> pessoas</a><?php } ?></span>
+                        <?php } ?>
+                    </section>
+                    <?php if(isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) { ?>
+                        <section class="errors-form">
+                        <?php foreach ($_SESSION['errors'] as $key => $error) { ?>
+                            <p><?= $error ?></p>
+                        <?php }?>
+                        </section>
+                    <?php } ?>
+                    <?php if($photo->comments) { ?>
+                    <section class="comments">
+                        <a class="seeComments" href="/comments?p=<?= $photo->photoname ?>">Ver todos os <?= $photo->total_comments ?> comentários</a>
+                        <?php foreach ($photo->comments as $key => $comment) { ?>
+                            <section class="comment">
+                                <section class="content">
+                                    <a href="/profile?user=<?= $comment->user->username ?>"><?= $comment->user->username ?></a>
+                                    <p><?= $comment->comment ?></p>
+                                </section>
+                                <?php if ($_SESSION['user']['id'] == $comment->user->id_petuser) { ?>
+                                    <a class="btnDeleteComment" href="/delete-comment?comment=<?= $comment->id_comment ?>"><i class="fi-rr-trash"></i></a>
+                                <?php } ?>
+                            </section>
+                        <?php }?>
+                    </section>
+                    <?php } ?>
+                </section>
+            </section>
+        </section>
+        <?php } ?>
+        <?php if ($this->view->totalPages > 1) { ?>
+        <section class="buttons-pages">
+            <!-- Botão voltar uma página -->
+            <?php if ($this->view->currentPage - 1 > 0) { ?>
+                <a class="btnPrevious" href="/?page=<?= $this->view->currentPage - 1 ?>"><i class="fi-rr-arrow-left"></i></a>
+            <?php } ?>
+
+            <!-- Botão primeira página -->
+            <a class="<?php if ($this->view->currentPage == 1) echo 'active' ?>" href="/">1</a>
+
+            <!-- ... -->
+            <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 2 > 1) { ?>
+                <span>...</span>
+            <?php } ?>
+
+            <!-- Página anterior a ativa -->
+            <?php if ($this->view->currentPage > 1 && $this->view->currentPage - 1 > 1) { ?>
+                <a href="/?page=<?= $this->view->currentPage - 1 ?>"><?= $this->view->currentPage - 1 ?></a>
+            <?php } ?>
+            
+            <!-- Página atual != da primeira e última página -->
+            <?php if ($this->view->currentPage > 1 && $this->view->currentPage < $this->view->totalPages) { ?>
+                <a class="active" href="/?page=<?= $this->view->currentPage ?>"><?= $this->view->currentPage ?></a>
+            <?php } ?>
+
+            <!-- Página próxima a ativa -->
+            <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 1 < $this->view->totalPages) { ?>
+                <a href="/?page=<?= $this->view->currentPage + 1 ?>"><?= $this->view->currentPage + 1 ?></a>
+            <?php } ?>
+
+            <!-- ... -->
+            <?php if ($this->view->currentPage < $this->view->totalPages && $this->view->currentPage + 2 < $this->view->totalPages) { ?>
+                <span>...</span>
+            <?php } ?>
+
+            <!-- Botão última página -->
+            <?php if ($this->view->totalPages >= 3) { ?>
+                <a class="<?php if ($this->view->currentPage == $this->view->totalPages) echo 'active' ?>" href="/?page=<?= $this->view->totalPages ?>"><?= $this->view->totalPages ?></a>
+            <?php } ?>
+
+            <!-- Botão caso só tenha 2 páginas -->
+            <?php if ($this->view->totalPages == 2) { ?>
+                <a class="<?php if ($this->view->currentPage == 2) echo 'active' ?>" href="/?page=2">2</a>
+            <?php } ?>
+
+            <!-- Botão avançar uma página -->
+            <?php if ($this->view->currentPage + 1 <= $this->view->totalPages) { ?>
+                <a class="btnNext" href="/?page=<?= $this->view->currentPage + 1 ?>"><i class="fi-rr-arrow-right"></i></a>
+            <?php } ?>
+        </section>
+        <?php } ?>
+    </section>
+</main>

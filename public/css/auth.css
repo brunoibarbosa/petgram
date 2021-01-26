@@ -1,0 +1,200 @@
+body {
+	align-items: center;
+	justify-content: center;
+}
+
+.form-home button {
+	border-radius: 3px;
+}
+
+.form-home {
+	padding: 40px;
+	width: 100%;
+	max-width: 350px;
+	margin-top: auto;
+}
+
+.form-home img {
+	display: block;
+	margin: 0 auto;
+	pointer-events: none;
+	margin-bottom: 20px;
+}
+
+.form-home > form > section {
+	margin: 6px 0;
+}
+
+.form-home label {
+	display: flex;
+	position: relative;
+	cursor: text;
+}
+
+.form-home input:focus,
+.form-home input:invalid:focus {
+	border: 1px solid var(--gray-2);
+	color: var(--darken-color);
+}
+
+.form-home #passwordInput {
+	border-radius: 3px 0 0 3px;
+}
+
+.form-home input {
+	background: var(--lighten-color-2);
+	border: 1px solid var(--gray-3);
+	flex-grow: 1;
+	border-radius: 3px;
+	color: var(--darken-color);
+	font-size: 0.75rem;
+	padding: 14px 8px 6px 8px;
+}
+
+.form-home input:invalid {
+	color: transparent;
+}
+
+.form-home span {
+	position: absolute;
+	color: var(--gray-2);
+	top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+	transition: all ease-out .1s;
+}
+
+.form-home select {
+	flex-grow: 1;
+	font-size: 0.75rem;
+	padding: 10px 6px;
+	border: 1px solid var(--gray-3);
+	color: var(--gray-2);
+	background: var(--lighten-color-2);
+}
+
+.form-home option {
+	padding: 10px 6px;
+}
+
+.form-home input:focus + span,
+.form-home input:valid + span {
+	font-size: 0.6rem;
+    left: 9px;
+    top: 10px;
+}
+
+.form-home .showPass {
+	height: 38px;
+	width: 38px;
+	border: 1px solid var(--gray-3);
+	border-left: none;
+	border-radius: 0 3px 3px 0;
+	background: var(--lighten-color-2);
+}
+
+.form-home .showPass i {
+	pointer-events: none;
+}
+
+.form-home button[type="submit"] {
+	margin-top: 6px;
+	background: var(--primary-color);
+	width: 100%;
+	font-weight: 600;
+	padding: 7px;
+	color: #fff;
+}
+
+.form-home button[disabled] {
+	background: var(--primary-lighten-color);
+}
+
+.form-home .span-register {
+	font-size: 0.85rem;
+	color: var(--gray-2);
+	text-align: center;
+	display: block;
+	position: static;
+	margin-top: 20px;
+}
+
+.form-home .span-register a {
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+/* REATIVAR CONTA */
+#account-status {
+    padding: 40px;
+    width: 100%;
+    max-width: 350px;
+	margin-top: auto;
+	text-align: center;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#account-status .info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	margin: 20px;
+	margin-bottom: 40px;
+	font-size: 1.2rem;
+	color: var(--darken-color);
+}
+
+#account-status .info .username {
+	font-size: 1.4rem;
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+#account-status .profile-picture {
+	width: 70px;
+	height: 70px;
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+#account-status .profile-picture img {
+	height: 100%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#account-status .notice span {
+	color: var(--darken-color);
+	font-weight: 600;
+	font-size: 0.8rem;
+}
+
+#account-status .notice .options {
+	margin-top: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#account-status .options a {
+	margin-top: 6px;
+	background: var(--primary-color);
+	width: 100%;
+	font-weight: 600;
+	padding: 7px;
+	color: #fff;
+	border-radius: 3px;
+}
+
+#account-status .options .btnBack {
+	background: var(--gray-3);
+	color: var(--gray-2);
+}

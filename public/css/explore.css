@@ -1,0 +1,36 @@
+/* EXPLORAR */
+#explore .photos {
+    padding-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+}
+
+.card-photo {
+    height: 33vw;
+    overflow: hidden;
+    position: relative;
+    background: var(--lighten-color);
+}
+
+.card-photo img {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seeMore {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnSeeMore {
+    border-radius: 3px;
+    background: var(--primary-color);
+    font-weight: 600;
+    padding: 7px 15px;
+    color: var(--lighten-color);
+}
