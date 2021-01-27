@@ -36,11 +36,6 @@
                         <span>Curtido por <a href="/profile?user=<?= $this->view->photo->last_like->username ?>"><?= $this->view->photo->last_like->username ?></a><?php if (count($this->view->photo->likes) > 1) { ?> e <a href="/likes?p=<?= $this->view->photo->photoname ?>">outras <?php echo count($this->view->photo->likes) - 1 ?> pessoas</a><?php } ?></span>
                     <?php } ?>
                 </section>
-                <form class="add-comment" action="comment-photo" method="post">
-                    <input type="text" hidden value="<?= $_GET['p'] ?>" name="photoname" required>
-                    <input type="text" name="comment" id="commentInput" required>
-                    <button type="submit">Publicar</button>
-                </form>
                 <?php if(isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) { ?>
                     <section class="errors-form">
                     <?php foreach ($_SESSION['errors'] as $key => $error) { ?>
@@ -54,7 +49,7 @@
                     <?php foreach ($this->view->photo->comments as $key => $comment) { ?>
                         <section class="comment">
                             <section class="user-picture">
-                                <img src="<?= $comment->user->picture ?>" alt="Foto de Perfil">
+                                <a href="/profile?user=<?= $comment->user->username ?>"><img src="<?= $comment->user->picture ?>" alt="Foto de Perfil"></a>
                             </section>
                             <section class="content">
                                 <section>
@@ -70,6 +65,11 @@
                     <?php }?>
                 </section>
                 <?php } ?>
+                <form class="add-comment" action="comment-photo" method="post">
+                    <input type="text" hidden value="<?= $_GET['p'] ?>" name="photoname" required>
+                    <input type="text" name="comment" id="commentInput" required placeholder="Adicione um comentário...">
+                    <button type="submit">Publicar</button>
+                </form>
             </section>
         </section>
     </section>

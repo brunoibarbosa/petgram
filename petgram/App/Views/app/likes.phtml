@@ -1,7 +1,7 @@
 <main id="likes">
     <section class="likes">
-        <a class="backToPhoto" href="/photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-arrow-left"></i> Voltar para a foto</a>
         <ul>
+            <a class="backToPhoto" href="/photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-arrow-left"></i> Voltar para a foto</a>
             <?php if($this->view->likes) { foreach ($this->view->likes as $key => $value) { ?>
             <li class="card">
                 <section class="info">

@@ -25,6 +25,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O Petgram foi uma aplicação criada com o intuito de praticar e melhorar meu aprendizado. Nele você tem as principais funções do Instagram: postar fotos, comentar, curtir e seguir quem quiser!
 
+Faça login com algumas das contas abaixo:
+
+Email/username:
+sabrina@gmail.com ou sabrina2020
+sofia@gmail.com ou sofia_cat
+theo@gmail.com ou theo123
+
+Senha: 123456
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.

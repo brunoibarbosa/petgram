@@ -1,7 +1,7 @@
 <main id="following">
     <section class="following">
-        <a class="backToPhoto" href="/profile?user=<?= $this->view->username ?>"><i class="fi-rr-arrow-left"></i> Voltar para o perfil</a>
         <ul>
+            <a class="backToPhoto" href="/profile?user=<?= $this->view->username ?>"><i class="fi-rr-arrow-left"></i> Voltar para o perfil</a>
             <?php if(count($this->view->following) > 0) { foreach ($this->view->following as $following => $value) { ?>
             <li class="card">
                 <section class="info">

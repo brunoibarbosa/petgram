@@ -26,9 +26,9 @@
     </header>
     <section class="user-photos">
         <section class="options">
-            <a href="#photos" class="btnMyPhotos"><i class="fi-rr-grid"></i></a>
+            <a href="#photos" class="btnMyPhotos"><i class="fi-rr-grid"></i><span>Publicações</span></a>
             <?php if ($this->view->user->username == $_SESSION['user']['username']) { ?>
-            <a href="#saved" class="btnSaved"><i class="fi-rr-bookmark"></i></a>
+            <a href="#saved" class="btnSaved"><i class="fi-rr-bookmark"></i><span>Salvos</span></a>
             <?php } ?>
         </section>
         <section class="photos">

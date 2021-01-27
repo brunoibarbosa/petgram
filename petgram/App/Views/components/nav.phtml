@@ -1,6 +1,15 @@
 <header class="header-home">
     <section>
         <section class="logo"><a href="/"><img src="./img/petgram-logo.svg" alt="Petgram"></a></section>
+        <?php if ($this->view->active != 'search') { ?>
+        <form class="searchInput" action="/search" method="get">
+            <label>
+                <input type="text" value="" required name="user">
+                <span><i class="fi-rr-search"></i>Pesquisar</span>
+                <button type="submit"></button>
+			</label>
+        </form>
+        <?php } ?>
         <nav class="navbar">
             <section><a class="nav-link" href="/"><i class="<?php echo $this->view->active == 'home' ? 'fi-sr-home' : 'fi-rr-home'; ?>"></i></a></section>
             <section><a class="nav-link" href="/search"><i class="<?php echo $this->view->active == 'search' ? 'fi-sr-search' : 'fi-rr-search'; ?>"></i></a></section>
@@ -14,7 +23,6 @@
                     <a href="/profile"><i class="fi-rr-portrait"></i>Perfil</a>
                     <a href="/profile#saved"><i class="fi-rr-bookmark"></i>Salvos</a>
                     <a href="/edit"><i class="fi-rr-settings"></i>Configurações</a>
-                    <span></span>
                     <a href="/logout">Sair</a>
                 </section>
             </section>

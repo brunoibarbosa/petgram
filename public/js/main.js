@@ -259,19 +259,15 @@ if (document.querySelector('main#profile')) {
             if (location.hash === '#saved') {
                 myPhotos.classList.add('hidden')
                 btnMyPhotos.parentElement.classList.remove('show')
-                btnMyPhotos.className = 'fi-rr-grid'
 
                 mySaved.classList.remove('hidden')
                 btnSaved.parentElement.classList.add('show')
-                btnSaved.className = 'fi-sr-bookmark'
             } else {
                 myPhotos.classList.remove('hidden')
                 btnMyPhotos.parentElement.classList.add('show')
-                btnMyPhotos.className = 'fi-sr-grid'
 
                 mySaved.classList.add('hidden')
                 btnSaved.parentElement.classList.remove('show')
-                btnSaved.className = 'fi-rr-bookmark'
             }
         }
     } else {

@@ -1,7 +1,7 @@
 <main id="comments">
     <section class="comments">
-        <a class="backToPhoto" href="/photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-arrow-left"></i> Voltar para a foto</a>
         <ul>
+            <a class="backToPhoto" href="/photo?p=<?= $_GET['p'] ?>"><i class="fi-rr-arrow-left"></i> Voltar para a foto</a>
             <?php foreach ($this->view->photo->comments as $key => $comment) { ?>
                 <li class="comment">
                     <section class="user-picture">
